@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self';script-src 'self' 'unsafe-inline';connect-src *"> -->
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Traveller App</title>
+        <script type="text/javascript" src="./static/js/jquery-3.3.1.min.js" onload="window.$ = window.jQuery = module.exports;" ></script>
+        <script src="./static/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="./static/css/font-awesome.min.css">
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <link rel="stylesheet" href="static/css/bootstrap.min.css" type="text/css">
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <div class="row black-background">
+                <div class="col-md-2">
+                    <div class="p-1">
+                        <img alt="not found" class="rounded-circle" src="static/img/logo.png" height="70px;" width="70px;">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="p-4 text-center">
+                        <h3 style="color: white;"><strong>KKT Traveller</strong></h3>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="p-4">
+                        <a href="#"><i class="fa fa-sign-out" style="font-size:30px; color: white;">Logout</i></a>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="nav nav-tabs nav-fill mb-3 m-2" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                <a class="nav-link active black font-weight-bold" id="traveller-home-tab" data-toggle="pill" href="#traveller-home" role="tab" aria-controls="traveller-home" aria-selected="true">Buses</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link black font-weight-bold" id="jt-tab" data-toggle="pill" href="#jt" role="tab" aria-controls="jt" aria-selected="false">Journeys and Transport Fees</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link black font-weight-bold" id="cashiers-tab" data-toggle="pill" href="#cashiers" role="tab" aria-controls="cashiers" aria-selected="false">Cashiers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link black font-weight-bold" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="false">Account</a>
+                </li>
+            </ul>
+
+            <div class="tab-content m-2" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="traveller-home" role="tabpanel" aria-labelledby="traveller-home-tab">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h4 class="p-2"></h4>
+                        <button type="button" class="btn btn-dark btn-sm btn-block font-weight-bold">Available Buses</button>
+                        <!-- <h6 class="m-1 font-weight-bold"></h6> -->
+                        <div class="whitebackground p-2 outline m-1">
+                            <div class="row m-1 p-1">
+                                <div class="col-md-2">
+                                    <i class="fa fa-bus" style="font-size:36px;"></i>
+                                </div>
+                                <div class="col-md-10">
+                                    <h6 class="font-weight-bold">Bus name</h6>
+                                    <p>
+                                        Type: Ordinary<br>
+                                        Districts: Arua to Kampala<br>
+                                        Date
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="row m-1 p-1">
+                                <div class="col-md-2">
+                                    <i class="fa fa-bus" style="font-size:36px;"></i>
+                                </div>
+                                <div class="col-md-10">
+                                    <h6 class="font-weight-bold">Bus name</h6>
+                                    <p>
+                                        Type: Ordinary<br>
+                                        Districts: Arua to Kampala<br>
+                                        Date
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <button type="button" class="btn btn-outline-dark btn-sm btn-block font-weight-bold">Bus Structure</button>
+                            <!-- <h4 class="text-center font-weight-bold p-1">Bus Structure</h4> -->
+                            <div id="container" class="outline p-3 m-2" style="height: 500px;overflow-y: auto;"></div>
+                            <script>
+                                require('./renderer.js');
+                            </script>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div>
+                            <h4 class="p-2"></h4>
+                            <button type="button" class="btn btn-dark btn-sm btn-block font-weight-bold">Create New Bus</button>
+                            <form class="p-2 outline m-1">
+                                <div class="form-group">
+                                    <label for="busNumber">Bus Number</label>
+                                    <input type="text" class="form-control" id="busNumber" aria-describedby="busHelp" placeholder="Enter bus number">
+                                    <small id="busHelp" class="form-text text-muted">Enter bus number plate</small>
+                                </div>
+                                <div class="form-group">
+                                    <label>Seating Plan</label>:
+                                    <select class="m-l-2">
+                                        <option>A</option>
+                                        <option>B</option>
+                                        <option>C</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Bus Type:</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios" id="Ordinary" value="Ordinary" checked>
+                                                <label class="form-check-label" for="Ordinary">
+                                                    Ordinary
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios" id="Luxury" value="Luxury">
+                                                <label class="form-check-label" for="Luxury">
+                                                    Luxury
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block"><strong>Add</strong></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="jt" role="tabpanel" aria-labelledby="jt-tab">
+                <!-- journeys and transport -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <!-- <button type="button" class="btn btn-secondary btn-sm">Add New Journey</button> -->
+                        <h6 class="m-2 font-weight-bold"></h6>
+                        <button type="button" class="btn btn-dark btn-sm btn-block font-weight-bold">Major Journeys</button>
+                        <div class="whitebackground p-2 outline m-1">
+                            <div class="row m-1 p-1">
+                                <div class="col-md-3">
+                                    <i class="fa fa-road" style="font-size:50px;"></i>
+                                </div>
+                                <div class="col-md-9">
+                                    <h6>Arua District to Kampala District</h6>
+                                    <p>
+                                        Ordinary - 3500
+                                    </p>
+                                    <button type="button" class="btn btn-primary m-2">edit</button>
+                                    <button type="button" class="btn btn-danger m-2">delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- <h6 class="font-weight-bold">Edit Journey</h6> -->
+                        <button type="button" class="btn btn-outline-dark btn-sm btn-block font-weight-bold">Edit Journey</button>
+                        <div class="outline p-2 m-1" align=center>
+                            From: <select>
+                                    <option>Arua District</option>
+                                    <option>Kampala District</option>
+                                    </select>
+                            To:   <select>
+                                    <option>Kampala District</option>
+                                    <option>Arua District</option>
+                                    </select>
+                            Bus Type: <select>
+                                        <option>Ordinary</option>
+                                        <option>Luxury</option>
+                                        </select><br><br>
+
+                            <p><strong>Amount:</strong> <input class="text-center" type="text" value="35000"/></p>
+                            <div class="dropdown-divider"></div>
+                            <div align=left class="p-3">
+                                <strong>Other stops...</strong> <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal"><strong>new +</strong></button><br>
+                                <ul class="p-1">
+                                    <li class="p-2">
+                                        Arua District <strong>To</strong> Nebbi District <strong>(Ordinary)</strong> Fee: <strong>15000</strong> <button type="button" class="btn btn-outline-danger"><strong>x</strong></button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div align=left class="p-3">
+                                <strong>Pickup points...</strong> <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#pickModal"><strong>new +</strong></button><br>
+                                <ol class="p-1">
+                                    <li class="p-2">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <input class="p-1 form-control-plaintext" type="text" value="Awindiri" readonly>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button  type="button" class="btn btn-outline-danger"><strong>x</strong></button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="p-2">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <input class="p-1 form-control-plaintext" type="text" value="Ewata" readonly>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button  type="button" class="btn btn-outline-danger"><strong>x</strong></button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div>
+                                <button type="button" class="btn btn-dark btn-block btn-lg"><strong>Save</strong></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <h6 class="m-2 font-weight-bold"></h6>
+                        <button type="button" class="btn btn-dark btn-sm btn-block font-weight-bold">Add Journey</button>
+                        <div class="p-2 outline m-1">
+                            <form>
+                                <div class="form-group">
+                                    <label for="from">From</label>
+                                    <input type="text" class="form-control" id="from" aria-describedby="fromlHelp" placeholder="Enter departure point">
+                                </div>
+                                <div class="form-group">
+                                    <label for="to">To</label>
+                                    <input type="text" class="form-control" id="to" aria-describedby="tolHelp" placeholder="Enter destination">
+                                </div>
+                                <label><strong>Amount</strong></label>
+                                <div class="form-group">
+                                    <label for="Ordinary">Ordinary</label>
+                                    <input type="text" class="form-control" id="Ordinary" aria-describedby="OrdinarylHelp" placeholder="Ordinary">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Luxury">Luxury</label>
+                                    <input type="text" class="form-control" id="Luxury" aria-describedby="LuxuryHelp" placeholder="Luxury">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block btn-lg"><strong>Add</strong></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Stop By</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group row">
+                                        <label for="placeName" class="col-sm-4 col-form-label">Place name</label>
+                                        <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="placeName" placeholder="place name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="amount" class="col-sm-4 col-form-label">Amount</label>
+                                        <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="amount" placeholder="amount">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="type" class="col-sm-4 col-form-label">Bus Type</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" id="type">
+                                                <option value="Ordinary">Ordinary</option>
+                                                <option value="Luxury">Luxury</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="pickModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Pick Point</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group row">
+                                    <label for="placeName" class="col-sm-4 col-form-label">Pick point</label>
+                                    <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="placeName" placeholder="place name">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="cashiers" role="tabpanel" aria-labelledby="cashiers-tab">
+                <!-- cashier page -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <!-- <h6 class="m-1 font-weight-bold">Cashiers</h6> -->
+                        <button type="button" class="btn btn-dark btn-sm btn-block m-1">Cashiers</button>
+                        <div class="whitebackground p-2 outline">
+                            <div class="row m-1 p-1">
+                                <div class="col-md-3">
+                                    <i class="fa fa-user" style="font-size:36px;"></i>
+                                </div>
+                                <div class="col-md-9">
+                                    <h6 class="font-weight-bold">Byenkya Joshua Aaron</h6>
+                                    <p>
+                                        +256775032096<br>
+                                        jbyenkyaaaron@gmail.com<br>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="row m-1 p-1">
+                                <div class="col-md-3">
+                                    <i class="fa fa-user" style="font-size:36px;"></i>
+                                </div>
+                                <div class="col-md-9">
+                                    <h6 class="font-weight-bold">Itwaru Samuel</h6>
+                                    <p>
+                                        +256753919546<br>
+                                        samit@gmail.com<br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="outline">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <i class="fa fa-user p-3" style="font-size:200px;"></i>
+                                </div>
+                                <div class="col-md-8">
+                                    <form class="p-4">
+                                        <div class="form-group row">
+                                            <label for="firstName" class="col-sm-5 col-form-label">First Name</label>
+                                            <div class="col-sm-7">
+                                            <input type="text" readonly class="form-control-plaintext" id="firstName" value="Joshua">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="surname" class="col-sm-5 col-form-label">Surname</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" readonly class="form-control-plaintext" id="surname" value="Byenkya">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="nin" class="col-sm-5 col-form-label">NIN</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" readonly class="form-control-plaintext" id="nin" value="CM23FGTHSRR123">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="gender" class="col-sm-5 col-form-label">Gender</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" readonly class="form-control-plaintext" id="gender" value="Male">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="email" class="col-sm-5 col-form-label">Email</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" readonly class="form-control-plaintext" id="email" value="jbyenkyaaaron@gmail.com">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="telephone" class="col-sm-5 col-form-label">Telephone</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" readonly class="form-control-plaintext" id="telephone" value="+256775032096">
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="p-3">
+                                        <button type="button" class="btn btn-outline-danger btn-lg btn-block">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-4">
+                            <button type="button" class="btn btn-dark btn-lg btn-block m-1" data-toggle="modal" data-target="#cashierModal"><strong>Add New Cashier</strong></button>
+                        </div>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="cashierModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add Cashier</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group row">
+                                        <label for="firstName" class="col-sm-5 col-form-label">First Name</label>
+                                        <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="firstName" value="" placeholder="First Name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="surname" class="col-sm-5 col-form-label">Surname</label>
+                                        <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="surname" placeholder="Surname">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="nin" class="col-sm-5 col-form-label">NIN</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" id="nin" placeholder="NIN">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="type" class="col-sm-5 col-form-label">Gender</label>
+                                        <div class="col-sm-7">
+                                            <select class="form-control" id="type">
+                                                <option value="Ordinary">Male</option>
+                                                <option value="Luxury">Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="email" class="col-sm-5 col-form-label">Email</label>
+                                        <div class="col-sm-7">
+                                            <input type="email" class="form-control" id="email" placeholder="email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="telephone" class="col-sm-5 col-form-label">+256</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" id="telephone" placeholder="telephone">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="username" class="col-sm-5 col-form-label">username</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" id="username" placeholder="username">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-dark btn-sm btn-block font-weight-bold">Account Information</button>
+                        <div class="outline m-1 p-2">
+                            <input type="text" class="form-control m-1" id="firstName" value="Joshua" readonly>
+                            <input type="text" class="form-control m-1" id="surname" value="Byenkya" readonly>
+                            <input type="text" class="form-control m-1" id="nin" value="CM23FGTHSRR123" readonly>
+                            <input type="text" class="form-control m-1" id="sex" value="Male" readonly>
+                            <input type="text" class="form-control m-1" id="email" value="jbyenkyaaaron@gmail.com" readonly>
+                            <input type="text" class="form-control m-1" id="telephone" value="+256775032096" readonly>
+                            <div class="dropdown-divider"></div>
+                            <label><strong>Account Information</strong></label>
+                            <input type="text" class="form-control m-1" id="username" value="j.byenkya" readonly>
+                            <input type="password" class="form-control m-1" id="username" value="j.byenkya" readonly>
+                            <div class="m-1 p-2">
+                                <button type="submit" class="btn btn-dark btn-lg btn-block font-weight-bold p-2" data-toggle="modal" data-target="#updateModal">Update Information</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-dark btn-sm btn-block font-weight-bold">Password</button>
+                        <div class="outline m-1 p-2">
+                            <div class="form-group">
+                                <label for="currentPassword">Current password</label>
+                                <input type="password" class="form-control" id="currentPassword" placeholder="current password">
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">New password</label>
+                                <input type="password" class="form-control" id="newPassword" placeholder="new password">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm password</label>
+                                <input type="password" class="form-control" id="confirmPassword" placeholder="confirm password">
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <button type="submit" class="btn btn-dark btn-lg btn-block font-weight-bold p-2">Change password</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Info</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                  <label for="InputFirstName">First name</label>
+                                  <input type="text" class="form-control" id="InputFirstName" value="Joshua">
+                                </div>
+                                <div class="form-group">
+                                  <label for="inputSurname">Surname</label>
+                                  <input type="text" class="form-control" id="inputSurname" value="Byenkya">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputNin">NIN</label>
+                                    <input type="text" class="form-control" id="inputNin" value="CM23FGTHSRR123">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputSex">Male</label>
+                                    <input type="text" class="form-control" id="inputSex" value="Male">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail">Email</label>
+                                    <input type="email" class="form-control" id="inputEmail" value="jbyenkyaaaron@gmail.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputTelephone">Telephone</label>
+                                    <input type="text" class="form-control" id="inputTelephone" value="+256775032096">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </body>
+</html>  
